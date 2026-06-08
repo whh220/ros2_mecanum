@@ -1,0 +1,2 @@
+[console_scripts]
+lidar_node = delta2a_lidar.lidar_node:main

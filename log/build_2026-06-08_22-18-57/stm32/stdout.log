@@ -1,0 +1,33 @@
+running egg_info
+creating ../../build/stm32/stm32.egg-info
+writing ../../build/stm32/stm32.egg-info/PKG-INFO
+writing dependency_links to ../../build/stm32/stm32.egg-info/dependency_links.txt
+writing requirements to ../../build/stm32/stm32.egg-info/requires.txt
+writing top-level names to ../../build/stm32/stm32.egg-info/top_level.txt
+writing manifest file '../../build/stm32/stm32.egg-info/SOURCES.txt'
+reading manifest file '../../build/stm32/stm32.egg-info/SOURCES.txt'
+writing manifest file '../../build/stm32/stm32.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/wh/ros2_mecanum/build/stm32/build
+creating /home/wh/ros2_mecanum/build/stm32/build/lib
+creating /home/wh/ros2_mecanum/build/stm32/build/lib/stm32
+copying stm32/__init__.py -> /home/wh/ros2_mecanum/build/stm32/build/lib/stm32
+copying stm32/communication.py -> /home/wh/ros2_mecanum/build/stm32/build/lib/stm32
+running install
+running install_lib
+creating /home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages/stm32
+copying /home/wh/ros2_mecanum/build/stm32/build/lib/stm32/__init__.py -> /home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages/stm32
+copying /home/wh/ros2_mecanum/build/stm32/build/lib/stm32/communication.py -> /home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages/stm32
+byte-compiling /home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages/stm32/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages/stm32/communication.py to communication.cpython-312.pyc
+running install_data
+creating /home/wh/ros2_mecanum/install/stm32/share/ament_index
+creating /home/wh/ros2_mecanum/install/stm32/share/ament_index/resource_index
+creating /home/wh/ros2_mecanum/install/stm32/share/ament_index/resource_index/packages
+copying resource/stm32 -> /home/wh/ros2_mecanum/install/stm32/share/ament_index/resource_index/packages
+copying package.xml -> /home/wh/ros2_mecanum/install/stm32/share/stm32
+running install_egg_info
+Copying ../../build/stm32/stm32.egg-info to /home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages/stm32-0.0.0-py3.12.egg-info
+running install_scripts
+writing list of installed files to '/home/wh/ros2_mecanum/build/stm32/install.log'

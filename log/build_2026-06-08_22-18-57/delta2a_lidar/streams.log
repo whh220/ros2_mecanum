@@ -1,0 +1,39 @@
+[3.523s] Invoking command in '/home/wh/ros2_mecanum/src/delta2a_lidar/src/delta2a_lidar': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/wh/ros2_mecanum/build/delta2a_lidar/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/wh/ros2_mecanum/install/delta2a_lidar/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/delta2a_lidar build --build-base /home/wh/ros2_mecanum/build/delta2a_lidar/build install --record /home/wh/ros2_mecanum/build/delta2a_lidar/install.log --single-version-externally-managed install_data
+[3.688s] running egg_info
+[3.688s] creating ../../../../build/delta2a_lidar/delta2a_lidar.egg-info
+[3.699s] writing ../../../../build/delta2a_lidar/delta2a_lidar.egg-info/PKG-INFO
+[3.699s] writing dependency_links to ../../../../build/delta2a_lidar/delta2a_lidar.egg-info/dependency_links.txt
+[3.699s] writing entry points to ../../../../build/delta2a_lidar/delta2a_lidar.egg-info/entry_points.txt
+[3.700s] writing requirements to ../../../../build/delta2a_lidar/delta2a_lidar.egg-info/requires.txt
+[3.700s] writing top-level names to ../../../../build/delta2a_lidar/delta2a_lidar.egg-info/top_level.txt
+[3.700s] writing manifest file '../../../../build/delta2a_lidar/delta2a_lidar.egg-info/SOURCES.txt'
+[3.723s] reading manifest file '../../../../build/delta2a_lidar/delta2a_lidar.egg-info/SOURCES.txt'
+[3.723s] writing manifest file '../../../../build/delta2a_lidar/delta2a_lidar.egg-info/SOURCES.txt'
+[3.723s] running build
+[3.723s] running build_py
+[3.723s] creating /home/wh/ros2_mecanum/build/delta2a_lidar/build
+[3.723s] creating /home/wh/ros2_mecanum/build/delta2a_lidar/build/lib
+[3.724s] creating /home/wh/ros2_mecanum/build/delta2a_lidar/build/lib/delta2a_lidar
+[3.724s] copying delta2a_lidar/lidar_node.py -> /home/wh/ros2_mecanum/build/delta2a_lidar/build/lib/delta2a_lidar
+[3.724s] copying delta2a_lidar/__init__.py -> /home/wh/ros2_mecanum/build/delta2a_lidar/build/lib/delta2a_lidar
+[3.724s] running install
+[3.728s] running install_lib
+[3.740s] creating /home/wh/ros2_mecanum/install/delta2a_lidar/lib/python3.12/site-packages/delta2a_lidar
+[3.740s] copying /home/wh/ros2_mecanum/build/delta2a_lidar/build/lib/delta2a_lidar/lidar_node.py -> /home/wh/ros2_mecanum/install/delta2a_lidar/lib/python3.12/site-packages/delta2a_lidar
+[3.740s] copying /home/wh/ros2_mecanum/build/delta2a_lidar/build/lib/delta2a_lidar/__init__.py -> /home/wh/ros2_mecanum/install/delta2a_lidar/lib/python3.12/site-packages/delta2a_lidar
+[3.740s] byte-compiling /home/wh/ros2_mecanum/install/delta2a_lidar/lib/python3.12/site-packages/delta2a_lidar/lidar_node.py to lidar_node.cpython-312.pyc
+[3.742s] byte-compiling /home/wh/ros2_mecanum/install/delta2a_lidar/lib/python3.12/site-packages/delta2a_lidar/__init__.py to __init__.cpython-312.pyc
+[3.742s] running install_data
+[3.742s] creating /home/wh/ros2_mecanum/install/delta2a_lidar/share/ament_index
+[3.742s] creating /home/wh/ros2_mecanum/install/delta2a_lidar/share/ament_index/resource_index
+[3.742s] creating /home/wh/ros2_mecanum/install/delta2a_lidar/share/ament_index/resource_index/packages
+[3.742s] copying resource/delta2a_lidar -> /home/wh/ros2_mecanum/install/delta2a_lidar/share/ament_index/resource_index/packages
+[3.742s] copying package.xml -> /home/wh/ros2_mecanum/install/delta2a_lidar/share/delta2a_lidar
+[3.742s] creating /home/wh/ros2_mecanum/install/delta2a_lidar/share/delta2a_lidar/launch
+[3.742s] copying launch/lidar.launch.py -> /home/wh/ros2_mecanum/install/delta2a_lidar/share/delta2a_lidar/launch
+[3.742s] running install_egg_info
+[3.754s] Copying ../../../../build/delta2a_lidar/delta2a_lidar.egg-info to /home/wh/ros2_mecanum/install/delta2a_lidar/lib/python3.12/site-packages/delta2a_lidar-0.1.0-py3.12.egg-info
+[3.755s] running install_scripts
+[3.834s] Installing lidar_node script to /home/wh/ros2_mecanum/install/delta2a_lidar/lib/delta2a_lidar
+[3.834s] writing list of installed files to '/home/wh/ros2_mecanum/build/delta2a_lidar/install.log'
+[3.863s] Invoked command in '/home/wh/ros2_mecanum/src/delta2a_lidar/src/delta2a_lidar' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/wh/ros2_mecanum/build/delta2a_lidar/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/wh/ros2_mecanum/install/delta2a_lidar/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../../build/delta2a_lidar build --build-base /home/wh/ros2_mecanum/build/delta2a_lidar/build install --record /home/wh/ros2_mecanum/build/delta2a_lidar/install.log --single-version-externally-managed install_data

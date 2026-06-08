@@ -1,0 +1,2 @@
+[console_scripts]
+OdometryNode = sam_bot_odom_py.OdometryNode:main

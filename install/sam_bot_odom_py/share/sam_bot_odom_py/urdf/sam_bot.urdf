@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<robot name="mycar">
+    <link name="base_footprint"/>
+        
+    <joint name="link_footprint" type="fixed">
+        <origin xyz="0.0 0.0 0.07" rpy="0.0 0.0 0.0"/>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>   
+    </joint>
+    <!-- 车体 -->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.3 0.22 0.08" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="red">
+                <color rgba="1.0 0.0 0.0 0.5"/>
+            </material>
+        </visual>
+    </link>
+    <!-- 左前轮子 -->
+    <link name="lf_wheel_link">
+        <visual>
+            <origin  xyz="0.0 0.0 0.0" rpy="1.5707963267948966 0.0 0.0"/>
+            <geometry>
+                <cylinder length="0.025" radius="0.03"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.5 0.5 0.5 1.0"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="lf_base_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="lf_wheel_link"/>
+        <origin xyz="0.11 0.11 -0.03" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- 右前轮子 -->
+    <link name="rf_wheel_link">
+        <visual>
+            <origin  xyz="0.0 0.0 0.0" rpy="1.5707963267948966 0.0 0.0"/>
+            <geometry>
+                <cylinder length="0.025" radius="0.03"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.5 0.5 0.5 1.0"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="rf_base_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="rf_wheel_link"/>
+        <origin xyz="-0.11 0.11 -0.03" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- 左后轮子 -->
+    <link name="lh_wheel_link">
+        <visual>
+            <origin  xyz="0.0 0.0 0.0" rpy="1.5707963267948966 0.0 0.0"/>
+            <geometry>
+                <cylinder length="0.025" radius="0.03"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.5 0.5 0.5 1.0"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="lh_base_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="lh_wheel_link"/>
+        <origin xyz="0.11 -0.11 -0.03" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- 右后轮子 -->
+    <link name="rh_wheel_link">
+        <visual>
+            <origin  xyz="0.0 0.0 0.0" rpy="1.5707963267948966 0.0 0.0"/>
+            <geometry>
+                <cylinder length="0.025" radius="0.03"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.5 0.5 0.5 1.0"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="rh_base_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="rh_wheel_link"/>
+        <origin xyz="-0.11 -0.11 -0.03" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <!-- 连接铜柱 -->
+    <link name="lidar_cylinder_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.003" length="0.06"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="yellow">
+                <color rgba="1.0 1.0 0.0 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+    <!-- lidar -->
+    <link name="lidar_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.03"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="black">
+                <color rgba="0.0 0.0 0.0 0.5"/>
+            </material>
+        </visual>
+    </link>
+
+    <!-- 关节 -->
+    <joint name="lidar_cylinder_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="lidar_cylinder_link"/>
+        <origin xyz="0.1 0.0 0.07" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <joint name="lidar_joint" type="fixed">
+        <parent link="lidar_cylinder_link"/>
+        <child link="lidar_link"/>
+        <origin xyz="0.0 0.0 0.045" rpy="0.0 0.0 0.0"/>
+    </joint>
+</robot>
