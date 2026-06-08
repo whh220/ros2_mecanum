@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: delta2a-lidar
-Version: 0.1.0
-Summary: ROS2 driver for 3iRobotics Delta-2A LiDAR
-Maintainer: azim
-Maintainer-email: user@example.com
-License: MIT
