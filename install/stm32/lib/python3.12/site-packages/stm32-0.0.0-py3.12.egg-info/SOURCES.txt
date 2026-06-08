@@ -4,6 +4,7 @@ setup.py
 ../../build/stm32/stm32.egg-info/PKG-INFO
 ../../build/stm32/stm32.egg-info/SOURCES.txt
 ../../build/stm32/stm32.egg-info/dependency_links.txt
+../../build/stm32/stm32.egg-info/entry_points.txt
 ../../build/stm32/stm32.egg-info/requires.txt
 ../../build/stm32/stm32.egg-info/top_level.txt
 ../../build/stm32/stm32.egg-info/zip-safe

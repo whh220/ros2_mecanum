@@ -1,0 +1,2 @@
+[console_scripts]
+communication = stm32.communication:main

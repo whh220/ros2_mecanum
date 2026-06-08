@@ -1,0 +1,21 @@
+[0.956s] Invoking command in '/home/wh/ros2_mecanum/src/stm32': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/wh/ros2_mecanum/build/stm32/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/stm32 build --build-base /home/wh/ros2_mecanum/build/stm32/build install --record /home/wh/ros2_mecanum/build/stm32/install.log --single-version-externally-managed install_data
+[1.123s] running egg_info
+[1.135s] writing ../../build/stm32/stm32.egg-info/PKG-INFO
+[1.135s] writing dependency_links to ../../build/stm32/stm32.egg-info/dependency_links.txt
+[1.135s] writing entry points to ../../build/stm32/stm32.egg-info/entry_points.txt
+[1.135s] writing requirements to ../../build/stm32/stm32.egg-info/requires.txt
+[1.135s] writing top-level names to ../../build/stm32/stm32.egg-info/top_level.txt
+[1.159s] reading manifest file '../../build/stm32/stm32.egg-info/SOURCES.txt'
+[1.159s] writing manifest file '../../build/stm32/stm32.egg-info/SOURCES.txt'
+[1.159s] running build
+[1.159s] running build_py
+[1.160s] running install
+[1.164s] running install_lib
+[1.175s] running install_data
+[1.176s] running install_egg_info
+[1.188s] removing '/home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages/stm32-0.0.0-py3.12.egg-info' (and everything under it)
+[1.188s] Copying ../../build/stm32/stm32.egg-info to /home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages/stm32-0.0.0-py3.12.egg-info
+[1.188s] running install_scripts
+[1.269s] Installing communication script to /home/wh/ros2_mecanum/install/stm32/lib/stm32
+[1.269s] writing list of installed files to '/home/wh/ros2_mecanum/build/stm32/install.log'
+[1.299s] Invoked command in '/home/wh/ros2_mecanum/src/stm32' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/wh/ros2_mecanum/build/stm32/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/wh/ros2_mecanum/install/stm32/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/stm32 build --build-base /home/wh/ros2_mecanum/build/stm32/build install --record /home/wh/ros2_mecanum/build/stm32/install.log --single-version-externally-managed install_data

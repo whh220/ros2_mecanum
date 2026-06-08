@@ -1,0 +1,21 @@
+[0.958s] Invoking command in '/home/wh/ros2_mecanum/src/sam_bot_odom_py': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/wh/ros2_mecanum/build/sam_bot_odom_py/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/wh/ros2_mecanum/install/sam_bot_odom_py/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sam_bot_odom_py build --build-base /home/wh/ros2_mecanum/build/sam_bot_odom_py/build install --record /home/wh/ros2_mecanum/build/sam_bot_odom_py/install.log --single-version-externally-managed install_data
+[1.125s] running egg_info
+[1.137s] writing ../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info/PKG-INFO
+[1.137s] writing dependency_links to ../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info/dependency_links.txt
+[1.137s] writing entry points to ../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info/entry_points.txt
+[1.138s] writing requirements to ../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info/requires.txt
+[1.138s] writing top-level names to ../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info/top_level.txt
+[1.161s] reading manifest file '../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info/SOURCES.txt'
+[1.161s] writing manifest file '../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info/SOURCES.txt'
+[1.161s] running build
+[1.161s] running build_py
+[1.162s] running install
+[1.166s] running install_lib
+[1.178s] running install_data
+[1.178s] running install_egg_info
+[1.190s] removing '/home/wh/ros2_mecanum/install/sam_bot_odom_py/lib/python3.12/site-packages/sam_bot_odom_py-0.0.0-py3.12.egg-info' (and everything under it)
+[1.190s] Copying ../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info to /home/wh/ros2_mecanum/install/sam_bot_odom_py/lib/python3.12/site-packages/sam_bot_odom_py-0.0.0-py3.12.egg-info
+[1.191s] running install_scripts
+[1.272s] Installing OdometryNode script to /home/wh/ros2_mecanum/install/sam_bot_odom_py/lib/sam_bot_odom_py
+[1.272s] writing list of installed files to '/home/wh/ros2_mecanum/build/sam_bot_odom_py/install.log'
+[1.298s] Invoked command in '/home/wh/ros2_mecanum/src/sam_bot_odom_py' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/wh/ros2_mecanum/build/sam_bot_odom_py/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/wh/ros2_mecanum/install/sam_bot_odom_py/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sam_bot_odom_py build --build-base /home/wh/ros2_mecanum/build/sam_bot_odom_py/build install --record /home/wh/ros2_mecanum/build/sam_bot_odom_py/install.log --single-version-externally-managed install_data

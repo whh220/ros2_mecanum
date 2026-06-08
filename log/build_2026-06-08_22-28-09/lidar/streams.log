@@ -1,0 +1,35 @@
+[0.949s] Invoking command in '/home/wh/ros2_mecanum/src/lidar': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/wh/ros2_mecanum/build/lidar/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/lidar build --build-base /home/wh/ros2_mecanum/build/lidar/build install --record /home/wh/ros2_mecanum/build/lidar/install.log --single-version-externally-managed install_data
+[1.117s] running egg_info
+[1.117s] creating ../../build/lidar/lidar.egg-info
+[1.129s] writing ../../build/lidar/lidar.egg-info/PKG-INFO
+[1.130s] writing dependency_links to ../../build/lidar/lidar.egg-info/dependency_links.txt
+[1.130s] writing requirements to ../../build/lidar/lidar.egg-info/requires.txt
+[1.130s] writing top-level names to ../../build/lidar/lidar.egg-info/top_level.txt
+[1.130s] writing manifest file '../../build/lidar/lidar.egg-info/SOURCES.txt'
+[1.154s] reading manifest file '../../build/lidar/lidar.egg-info/SOURCES.txt'
+[1.154s] writing manifest file '../../build/lidar/lidar.egg-info/SOURCES.txt'
+[1.154s] running build
+[1.154s] running build_py
+[1.154s] creating /home/wh/ros2_mecanum/build/lidar/build
+[1.154s] creating /home/wh/ros2_mecanum/build/lidar/build/lib
+[1.154s] creating /home/wh/ros2_mecanum/build/lidar/build/lib/lidar
+[1.154s] copying lidar/lidar_node.py -> /home/wh/ros2_mecanum/build/lidar/build/lib/lidar
+[1.154s] copying lidar/__init__.py -> /home/wh/ros2_mecanum/build/lidar/build/lib/lidar
+[1.154s] running install
+[1.159s] running install_lib
+[1.170s] creating /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar
+[1.170s] copying /home/wh/ros2_mecanum/build/lidar/build/lib/lidar/lidar_node.py -> /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar
+[1.170s] copying /home/wh/ros2_mecanum/build/lidar/build/lib/lidar/__init__.py -> /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar
+[1.171s] byte-compiling /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar/lidar_node.py to lidar_node.cpython-312.pyc
+[1.172s] byte-compiling /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar/__init__.py to __init__.cpython-312.pyc
+[1.172s] running install_data
+[1.172s] creating /home/wh/ros2_mecanum/install/lidar/share/ament_index
+[1.172s] creating /home/wh/ros2_mecanum/install/lidar/share/ament_index/resource_index
+[1.172s] creating /home/wh/ros2_mecanum/install/lidar/share/ament_index/resource_index/packages
+[1.172s] copying resource/lidar -> /home/wh/ros2_mecanum/install/lidar/share/ament_index/resource_index/packages
+[1.172s] copying package.xml -> /home/wh/ros2_mecanum/install/lidar/share/lidar
+[1.172s] running install_egg_info
+[1.185s] Copying ../../build/lidar/lidar.egg-info to /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar-0.0.0-py3.12.egg-info
+[1.185s] running install_scripts
+[1.266s] writing list of installed files to '/home/wh/ros2_mecanum/build/lidar/install.log'
+[1.289s] Invoked command in '/home/wh/ros2_mecanum/src/lidar' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/wh/ros2_mecanum/build/lidar/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/lidar build --build-base /home/wh/ros2_mecanum/build/lidar/build install --record /home/wh/ros2_mecanum/build/lidar/install.log --single-version-externally-managed install_data
