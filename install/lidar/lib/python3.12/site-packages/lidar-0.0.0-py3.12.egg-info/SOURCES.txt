@@ -4,9 +4,11 @@ setup.py
 ../../build/lidar/lidar.egg-info/PKG-INFO
 ../../build/lidar/lidar.egg-info/SOURCES.txt
 ../../build/lidar/lidar.egg-info/dependency_links.txt
+../../build/lidar/lidar.egg-info/entry_points.txt
 ../../build/lidar/lidar.egg-info/requires.txt
 ../../build/lidar/lidar.egg-info/top_level.txt
 ../../build/lidar/lidar.egg-info/zip-safe
+launch/lidar.launch.py
 lidar/__init__.py
 lidar/lidar_node.py
 resource/lidar

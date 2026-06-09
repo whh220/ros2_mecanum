@@ -47,23 +47,35 @@ def generate_launch_description():
         }]
     )
     stm32_node= Node(
-        package= 'stm32_communication',
-        executable= 'CommunicationStm32',
+        package= 'stm32',
+        executable= 'communication',
         name= 'stm32_node',
         output='screen',
     )
     robot_localization_node = Node(
-       package='robot_localization',
-       executable='ekf_node',
-       name='ekf_filter_node',
-       output='screen',
-       parameters=[os.path.join(ekf_config_path, 'config/ekf.yaml')]
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[os.path.join(ekf_config_path, 'config/ekf.yaml')]
     )
-
+    lidar_node=Node(
+        package='lidar',
+        executable='lidar_node',
+        name='delta2a_lidar',
+        output='screen',
+        parameters=[{
+            'port':     '/dev/ttyUSB1',
+            'baud':     230400,
+            'frame_id': 'lidar_link',
+            'topic':    'scan',
+        }],
+        )
     return  LaunchDescription([
         # stm32_node,
+        # lidar_node,
         odometry_node,
-        robot_localization_node,
+        # robot_localization_node,
         robot_state_publisher_node,
         joint_state_publisher_node,
         rviz_node

@@ -47,8 +47,8 @@ def generate_launch_description():
         }]
     )
     stm32_node= Node(
-        package= 'stm32_communication',
-        executable= 'CommunicationStm32',
+        package= 'stm32',
+        executable= 'communication',
         name= 'stm32_node',
         output='screen',
     )
@@ -63,7 +63,7 @@ def generate_launch_description():
     return  LaunchDescription([
         # stm32_node,
         odometry_node,
-        robot_localization_node,
+        # robot_localization_node,
         robot_state_publisher_node,
         joint_state_publisher_node,
         rviz_node

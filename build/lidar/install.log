@@ -4,9 +4,12 @@
 /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar/__pycache__/__init__.cpython-312.pyc
 /home/wh/ros2_mecanum/install/lidar/share/ament_index/resource_index/packages/lidar
 /home/wh/ros2_mecanum/install/lidar/share/lidar/package.xml
+/home/wh/ros2_mecanum/install/lidar/share/lidar/launch/lidar.launch.py
 /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar-0.0.0-py3.12.egg-info/requires.txt
 /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar-0.0.0-py3.12.egg-info/PKG-INFO
 /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar-0.0.0-py3.12.egg-info/zip-safe
 /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar-0.0.0-py3.12.egg-info/SOURCES.txt
+/home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar-0.0.0-py3.12.egg-info/entry_points.txt
 /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar-0.0.0-py3.12.egg-info/dependency_links.txt
 /home/wh/ros2_mecanum/install/lidar/lib/python3.12/site-packages/lidar-0.0.0-py3.12.egg-info/top_level.txt
+/home/wh/ros2_mecanum/install/lidar/lib/lidar/lidar_node
