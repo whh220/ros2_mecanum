@@ -43,7 +43,7 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'odom_frame': 'odom',
-            'base_frame': 'base_link'
+            'base_frame': 'base_footprint'
         }]
     )
     stm32_node= Node(
@@ -72,8 +72,8 @@ def generate_launch_description():
         }],
         )
     return  LaunchDescription([
-        # stm32_node,
-        # lidar_node,
+        stm32_node,
+        lidar_node,
         odometry_node,
         # robot_localization_node,
         robot_state_publisher_node,

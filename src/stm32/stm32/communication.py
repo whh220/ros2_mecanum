@@ -64,14 +64,14 @@ class CommunicationStm32(Node):
         rf_bytes = bytes(frame[6:8])
         lh_bytes = bytes(frame[8:10])
 
-        lf_value = struct.unpack('>h', lf_bytes)[0]
-        rh_value = struct.unpack('>h', rh_bytes)[0]
-        rf_value = struct.unpack('>h', rf_bytes)[0]
-        lh_value = struct.unpack('>h', lh_bytes)[0]
+        lf_value = struct.unpack('>h', lf_bytes)[0]/1000
+        rh_value = struct.unpack('>h', rh_bytes)[0]/1000
+        rf_value = struct.unpack('>h', rf_bytes)[0]/1000
+        lh_value = struct.unpack('>h', lh_bytes)[0]/1000
 
-        vx = (lf_value - rf_value + lh_value -rh_value) /1000/ 4.0
-        vy = (lf_value + rf_value + lh_value + rh_value) /1000/ 4.0
-        wz = (lf_value + rf_value + lh_value + rh_value)  /1000/ (4.0 * (self.wheel_base+ self.track_width))
+        vx = (lf_value - rf_value + lh_value -rh_value) / 4.0
+        vy = (-lf_value - rf_value + lh_value + rh_value) / 4.0
+        wz = (-lf_value - rf_value - lh_value - rh_value)  / (2.0 * (self.wheel_base+ self.track_width))
 
         # 发布速度消息
         if rclpy.ok():
