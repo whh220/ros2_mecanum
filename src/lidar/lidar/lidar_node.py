@@ -23,7 +23,7 @@ PACKET_SIZE = 127
 BAUD_RATE = 230400
 SERIAL_PORT = '/dev/ttyUSB0'
 
-RANGE_MIN = 0.02
+RANGE_MIN = 0.15
 RANGE_MAX = 8.0
 
 
@@ -33,7 +33,7 @@ class Delta2ANode(Node):
 
         self.declare_parameter('port', SERIAL_PORT)
         self.declare_parameter('baud', BAUD_RATE)
-        self.declare_parameter('frame_id', 'laser')
+        self.declare_parameter('frame_id', 'lidar_link')
         self.declare_parameter('topic', 'scan')
 
         port = self.get_parameter('port').value
@@ -187,7 +187,7 @@ class Delta2ANode(Node):
             dist_m = dist_raw * 0.00025
             
             # 角度 = 起始角度 + 22.5° * i / num_points
-            angle_deg = start_angle_deg + 22.5 * i / num_points
+            angle_deg = start_angle_deg + (22.5 * i-1) / num_points
             
             if RANGE_MIN <= dist_m <= RANGE_MAX:
                 self._scan[angle_deg % 360.0] = dist_m
@@ -220,7 +220,7 @@ class Delta2ANode(Node):
         msg.angle_max = angle_max_rad
         msg.angle_increment = angle_inc
         msg.time_increment = 0.0
-        msg.scan_time = 1.0 / 6.5
+        msg.scan_time = 1.0 / 8.0
         msg.range_min = RANGE_MIN
         msg.range_max = RANGE_MAX
         msg.ranges = ranges
