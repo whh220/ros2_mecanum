@@ -187,7 +187,7 @@ class Delta2ANode(Node):
             dist_m = dist_raw * 0.00025
             
             # 角度 = 起始角度 + 22.5° * i / num_points
-            angle_deg = start_angle_deg + (22.5 * i) / num_points
+            angle_deg = start_angle_deg + 22.5 * (i-1) / num_points
             
             if RANGE_MIN <= dist_m <= RANGE_MAX:
                 self._scan[angle_deg % 360.0] = dist_m
