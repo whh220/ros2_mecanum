@@ -179,7 +179,7 @@ class Delta2ANode(Node):
             if base + 2 >= len(params):
                 break
             
-            # signal = params[base]  # 信号值，不用
+            # signal = params[base]  # 信号值不用
             dist_raw = (params[base+1] << 8) | params[base+2]
             
             # 距离分辨率 0.25mm
