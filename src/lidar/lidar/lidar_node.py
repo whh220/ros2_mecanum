@@ -198,6 +198,8 @@ class Delta2ANode(Node):
             if RANGE_MIN <= dist_m <= RANGE_MAX:
                 self._scan[angle_deg] = dist_m
                 points_added += 1
+            else:
+                self._scan[angle_deg] = RANGE_MAX + 1.0  # 无效点保存一个特殊值
         
         if self._frame_count % 100 == 0:
             self.get_logger().debug(
