@@ -168,7 +168,7 @@ class Delta2ANode(Node):
         # 第一包：记录初始角度作为参考
         if not hasattr(self, '_reference_angle'):
             self._reference_angle = start_angle_deg
-            self.get_logger().info(f'Reference angle set: {self._reference_angle:.1f}°')
+            # self.get_logger().info(f'Reference angle set: {self._reference_angle:.1f}°')
         
         # 检测是否再次检测到参考角度（转完一圈）
         if self._prev_start_angle >= 0.0 and start_angle_deg == self._reference_angle:
