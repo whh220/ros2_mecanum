@@ -157,7 +157,7 @@ class Delta2ANode(Node):
         start_angle_deg = start_angle_raw / 100.0
         
         # 计算点数：参数长度119 - 5(头部) = 114，114/3=38点
-        num_points = (len(params) - 5) // 3
+        num_points = ((packet[6]<<8) | (packet[7]) - 5) / 3
         
         if num_points <= 0:
             return
@@ -165,18 +165,24 @@ class Delta2ANode(Node):
         # 每帧22.5度
         angle_step = 22.5 / num_points
         
-        # 检测一圈完成
-        if self._prev_start_angle >= 0.0 and start_angle_deg < self._prev_start_angle - 10.0:
+        # 第一包：记录初始角度作为参考
+        if not hasattr(self, '_reference_angle'):
+            self._reference_angle = start_angle_deg
+            self.get_logger().info(f'Reference angle set: {self._reference_angle:.1f}°')
+        
+        # 检测是否再次检测到参考角度（转完一圈）
+        if self._prev_start_angle >= 0.0 and start_angle_deg == self._reference_angle:
             self._publish_scan()
             self._scan.clear()
             # self.get_logger().info(f'Full rotation: {len(self._scan)} points')
-        
+        # ====================================================
+            
         self._prev_start_angle = start_angle_deg
         
         # 解析距离数据
         points_added = 0
         for i in range(num_points):
-            base = 5 + i * 3
+            base = 5 + i * 3   #参数长度
             if base + 2 >= len(params):
                 break
             
@@ -190,7 +196,7 @@ class Delta2ANode(Node):
             angle_deg = start_angle_deg + 22.5 * (i-1) / num_points
             
             if RANGE_MIN <= dist_m <= RANGE_MAX:
-                self._scan[angle_deg % 360.0] = dist_m
+                self._scan[angle_deg] = dist_m
                 points_added += 1
         
         if self._frame_count % 100 == 0:
