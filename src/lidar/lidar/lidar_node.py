@@ -157,7 +157,7 @@ class Delta2ANode(Node):
         start_angle_deg = start_angle_raw / 100.0
         
         # 计算点数：参数长度119 - 5(头部) = 114，114/3=38点
-        num_points = ((packet[6]<<8) | (packet[7]) - 5) / 3
+        num_points = ((packet[6]<<8) | (packet[7]) - 5) // 3
         
         if num_points <= 0:
             return

@@ -5,7 +5,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
         Node(
-            package='delta2a_lidar',
+            package='lidar',
             executable='lidar_node',
             name='delta2a_lidar',
             output='screen',
