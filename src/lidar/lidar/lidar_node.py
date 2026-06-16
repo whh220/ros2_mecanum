@@ -18,7 +18,7 @@ CT_SCAN = 0x61
 # 根据实际数据，参数长度是0x0077 = 119
 # 包总大小 = 帧头(2) + 固定(1) + 版本(1) + CT(1) + 命令(1) + 参数长度(2) + 参数(119)
 # = 2+1+1+1+1+2+119 = 127 字节 ✓
-PACKET_SIZE = 127
+PACKET_SIZE = 129
 
 BAUD_RATE = 230400
 SERIAL_PORT = '/dev/ttyUSB0'
@@ -165,17 +165,10 @@ class Delta2ANode(Node):
         # 每帧22.5度
         angle_step = 22.5 / num_points
         
-        # 第一包：记录初始角度作为参考
-        if not hasattr(self, '_reference_angle'):
-            self._reference_angle = start_angle_deg
-            # self.get_logger().info(f'Reference angle set: {self._reference_angle:.1f}°')
-        
-        # 检测是否再次检测到参考角度（转完一圈）
-        if self._prev_start_angle >= 0.0 and start_angle_deg == self._reference_angle:
+        # 检测转完一圈：起始角度回绕（降低超过180°=越过360°边界）
+        if self._prev_start_angle >= 0.0 and start_angle_deg < self._prev_start_angle - 180.0:
             self._publish_scan()
             self._scan.clear()
-            # self.get_logger().info(f'Full rotation: {len(self._scan)} points')
-        # ====================================================
             
         self._prev_start_angle = start_angle_deg
         
@@ -193,7 +186,7 @@ class Delta2ANode(Node):
             dist_m = dist_raw * 0.00025
             
             # 角度 = 起始角度 + 22.5° * i / num_points
-            angle_deg = start_angle_deg + 22.5 * (i-1) / num_points
+            angle_deg = start_angle_deg + 22.5 * i / num_points
             
             if RANGE_MIN <= dist_m <= RANGE_MAX:
                 self._scan[angle_deg] = dist_m
@@ -216,8 +209,9 @@ class Delta2ANode(Node):
         n = len(angles_deg)
 
         angle_min_rad = math.radians(angles_deg[0])
-        angle_max_rad = math.radians(angles_deg[-1])
-        angle_inc = (angle_max_rad - angle_min_rad) / max(n - 1, 1)
+        # 固定角度分辨率: 22.5°/38点/包，保证均匀间距，避免dict排序后不均匀
+        angle_inc = math.radians(22.5 / 38)
+        angle_max_rad = angle_min_rad + (n - 1) * angle_inc
 
         ranges = [self._scan[a] for a in angles_deg]
 
