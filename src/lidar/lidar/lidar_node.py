@@ -192,7 +192,7 @@ class Delta2ANode(Node):
                 self._scan[angle_deg] = dist_m
                 points_added += 1
             else:
-                self._scan[angle_deg] = float("inf")
+                self._scan[angle_deg] = float("nan")
         
         if self._frame_count % 100 == 0:
             self.get_logger().debug(

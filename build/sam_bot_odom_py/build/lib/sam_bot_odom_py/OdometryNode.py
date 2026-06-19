@@ -12,7 +12,7 @@ class OdometryNode(Node):
         
         # 声明参数
         self.declare_parameter('odom_frame', 'odom')
-        self.declare_parameter('base_frame', 'base_link')
+        self.declare_parameter('base_frame', 'base_footprint')
         
         # 读取参数
         self.odom_frame = self.get_parameter('odom_frame').get_parameter_value().string_value
@@ -65,7 +65,7 @@ class OdometryNode(Node):
         odom_msg = Odometry()
         odom_msg.header.stamp = current_time.to_msg()
         odom_msg.header.frame_id = 'odom'
-        odom_msg.child_frame_id = 'base_link'
+        odom_msg.child_frame_id = 'base_footprint'
         
         # 位置
         odom_msg.pose.pose.position.x = self.x
@@ -88,7 +88,7 @@ class OdometryNode(Node):
         
         self.odom_pub.publish(odom_msg)
         
-        # 2. 直接发布 TF 变换（odom -> base_link）
+        # 2. 直接发布 TF 变换（odom -> base_footprint）
         tf_msg = TransformStamped()
         tf_msg.header.stamp = current_time.to_msg()
         tf_msg.header.frame_id = self.odom_frame

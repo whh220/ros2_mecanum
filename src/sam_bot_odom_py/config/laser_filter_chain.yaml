@@ -1,0 +1,30 @@
+laser_filter_chain:
+  ros__parameters:
+    # 1. 距离过滤
+    filter1:
+      name: range
+      type: laser_filters/LaserScanRangeFilter
+      params:
+        use_message_range_limits: false
+        lower_threshold: 0.15
+        upper_threshold: 8.0
+        lower_replacement_value: .nan
+        upper_replacement_value: .nan
+
+    # 2. 角度裁剪（前方 ±1.57rad ≈ ±90°）
+    filter2:
+      name: angle
+      type: laser_filters/LaserScanAngularBoundsFilter
+      params:
+        lower_angle: -1.57
+        upper_angle: 1.57
+
+    # 3. 斑点去噪
+    filter3:
+      name: speckle
+      type: laser_filters/LaserScanSpeckleFilter
+      params:
+        filter_type: 0
+        max_range: 0.2
+        max_range_difference: 0.1
+        filter_window: 2

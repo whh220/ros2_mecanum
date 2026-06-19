@@ -18,12 +18,12 @@ CT_SCAN = 0x61
 # 根据实际数据，参数长度是0x0077 = 119
 # 包总大小 = 帧头(2) + 固定(1) + 版本(1) + CT(1) + 命令(1) + 参数长度(2) + 参数(119)
 # = 2+1+1+1+1+2+119 = 127 字节 ✓
-PACKET_SIZE = 127
+PACKET_SIZE = 129
 
 BAUD_RATE = 230400
 SERIAL_PORT = '/dev/ttyUSB0'
 
-RANGE_MIN = 0.02
+RANGE_MIN = 0.15
 RANGE_MAX = 8.0
 
 
@@ -33,7 +33,7 @@ class Delta2ANode(Node):
 
         self.declare_parameter('port', SERIAL_PORT)
         self.declare_parameter('baud', BAUD_RATE)
-        self.declare_parameter('frame_id', 'laser')
+        self.declare_parameter('frame_id', 'lidar_link')
         self.declare_parameter('topic', 'scan')
 
         port = self.get_parameter('port').value
@@ -157,7 +157,7 @@ class Delta2ANode(Node):
         start_angle_deg = start_angle_raw / 100.0
         
         # 计算点数：参数长度119 - 5(头部) = 114，114/3=38点
-        num_points = (len(params) - 5) // 3
+        num_points = ((packet[6]<<8) | (packet[7]) - 5) // 3
         
         if num_points <= 0:
             return
@@ -165,22 +165,21 @@ class Delta2ANode(Node):
         # 每帧22.5度
         angle_step = 22.5 / num_points
         
-        # 检测一圈完成
-        if self._prev_start_angle >= 0.0 and start_angle_deg < self._prev_start_angle - 10.0:
+        # 检测转完一圈：起始角度回绕（降低超过180°=越过360°边界）
+        if self._prev_start_angle >= 0.0 and start_angle_deg < self._prev_start_angle - 180.0:
             self._publish_scan()
             self._scan.clear()
-            # self.get_logger().info(f'Full rotation: {len(self._scan)} points')
-        
+            
         self._prev_start_angle = start_angle_deg
         
         # 解析距离数据
         points_added = 0
         for i in range(num_points):
-            base = 5 + i * 3
+            base = 5 + i * 3   #参数长度
             if base + 2 >= len(params):
                 break
             
-            # signal = params[base]  # 信号值，不用
+            # signal = params[base]  # 信号值不用
             dist_raw = (params[base+1] << 8) | params[base+2]
             
             # 距离分辨率 0.25mm
@@ -190,8 +189,10 @@ class Delta2ANode(Node):
             angle_deg = start_angle_deg + 22.5 * i / num_points
             
             if RANGE_MIN <= dist_m <= RANGE_MAX:
-                self._scan[angle_deg % 360.0] = dist_m
+                self._scan[angle_deg] = dist_m
                 points_added += 1
+            else:
+                self._scan[angle_deg] = float("nan")
         
         if self._frame_count % 100 == 0:
             self.get_logger().debug(
@@ -208,8 +209,9 @@ class Delta2ANode(Node):
         n = len(angles_deg)
 
         angle_min_rad = math.radians(angles_deg[0])
-        angle_max_rad = math.radians(angles_deg[-1])
-        angle_inc = (angle_max_rad - angle_min_rad) / max(n - 1, 1)
+        # 固定角度分辨率: 22.5°/38点/包，保证均匀间距，避免dict排序后不均匀
+        angle_inc = math.radians(22.5 / 38)
+        angle_max_rad = angle_min_rad + (n - 1) * angle_inc
 
         ranges = [self._scan[a] for a in angles_deg]
 
@@ -220,7 +222,7 @@ class Delta2ANode(Node):
         msg.angle_max = angle_max_rad
         msg.angle_increment = angle_inc
         msg.time_increment = 0.0
-        msg.scan_time = 1.0 / 6.5
+        msg.scan_time = 1.0 / 8.0
         msg.range_min = RANGE_MIN
         msg.range_max = RANGE_MAX
         msg.ranges = ranges

@@ -9,6 +9,8 @@ setup.py
 ../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info/top_level.txt
 ../../build/sam_bot_odom_py/sam_bot_odom_py.egg-info/zip-safe
 config/ekf.yaml
+config/laser_filter_chain.yaml
+config/mapper_params_online_async.yaml
 config/rviz.rviz
 launch/display.launch.py
 launch/sam_bot_odom.launch.py

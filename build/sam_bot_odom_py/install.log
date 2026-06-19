@@ -7,6 +7,8 @@
 /home/wh/ros2_mecanum/install/sam_bot_odom_py/share/sam_bot_odom_py/launch/display.launch.py
 /home/wh/ros2_mecanum/install/sam_bot_odom_py/share/sam_bot_odom_py/launch/sam_bot_odom.launch.py
 /home/wh/ros2_mecanum/install/sam_bot_odom_py/share/sam_bot_odom_py/config/ekf.yaml
+/home/wh/ros2_mecanum/install/sam_bot_odom_py/share/sam_bot_odom_py/config/laser_filter_chain.yaml
+/home/wh/ros2_mecanum/install/sam_bot_odom_py/share/sam_bot_odom_py/config/mapper_params_online_async.yaml
 /home/wh/ros2_mecanum/install/sam_bot_odom_py/share/sam_bot_odom_py/config/rviz.rviz
 /home/wh/ros2_mecanum/install/sam_bot_odom_py/share/sam_bot_odom_py/urdf/sam_bot.urdf
 /home/wh/ros2_mecanum/install/sam_bot_odom_py/lib/python3.12/site-packages/sam_bot_odom_py-0.0.0-py3.12.egg-info/requires.txt

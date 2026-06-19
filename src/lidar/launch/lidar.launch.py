@@ -10,7 +10,7 @@ def generate_launch_description():
             name='delta2a_lidar',
             output='screen',
             parameters=[{
-                'port':     '/dev/ttyUSB1',
+                'port':     '/dev/ttyUSB0',
                 'baud':     230400,
                 'frame_id': 'lidar_link',
                 'topic':    'scan',
