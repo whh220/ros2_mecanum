@@ -1,0 +1,13 @@
+# Colcon 编译生成的目录
+build/
+install/
+log/
+
+# 编译和日志文件
+*.log
+compile_commands.json
+.catkin_tools/
+
+# Python 缓存
+__pycache__/
+*.pyc
