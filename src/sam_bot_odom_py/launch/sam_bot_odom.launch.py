@@ -83,9 +83,9 @@ def generate_launch_description():
             ]
         )
     return  LaunchDescription([
-        # stm32_node,
+        stm32_node,
         lidar_node,
-        laser_filters_node,
+        # laser_filters_node,
         odometry_node,
         # robot_localization_node,
         robot_state_publisher_node,
