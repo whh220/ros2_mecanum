@@ -81,7 +81,7 @@ def generate_launch_description():
         # robot_localization_node,
         launch.actions.IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                [nav2_bringup_path,'/launch','bringup_launch.py']
+                [nav2_bringup_path,'/launch','/bringup_launch.py']
             ),
             launch_arguments={
                 'map': map_yaml_path,
