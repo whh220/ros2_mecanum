@@ -9,6 +9,8 @@ setup.py
 ../../build/sam_bot_nav/sam_bot_nav.egg-info/top_level.txt
 ../../build/sam_bot_nav/sam_bot_nav.egg-info/zip-safe
 launch/sam_bot_nav2_launch.py
+map/room.pgm
+map/room.yaml
 resource/sam_bot_nav
 sam_bot_nav/__init__.py
 sam_bot_nav/nav_node.py

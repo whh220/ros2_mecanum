@@ -11,13 +11,14 @@ def generate_launch_description():
 
     sam_bot_odom_py_path = get_package_share_directory('sam_bot_odom_py')
     sam_bot_nav_path=get_package_share_directory('sam_bot_nav')
-    ekf_config_path = os.path.join(sam_bot_odom_py_path, 'config', 'ekf.yaml')
     nav2_bringup_path=get_package_share_directory('nav2_bringup')
-    rviz_config_path=os.path.join(nav2_bringup_path,'rviz','nav2_default_view.rviz')
-
     nav2_param_path=launch.substitutions.LaunchConfiguration(
         'params_file',default=os.path.join(sam_bot_nav_path,'config','nav2_params.yaml')
     )
+    
+    rviz_config_path=os.path.join(nav2_bringup_path,'rviz','nav2_default_view.rviz')
+    ekf_config_path = os.path.join(sam_bot_odom_py_path, 'config', 'ekf.yaml')
+    
    
     odometry_node = Node(
         package= 'sam_bot_odom_py',
@@ -43,18 +44,34 @@ def generate_launch_description():
        parameters=[os.path.join(ekf_config_path, 'config/ekf.yaml')]
     )
 
+    rviz_node=Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d',rviz_config_path],
+        parameters=[{'use_sim_time':False}],
+        output='screen'
+    )
+
+    lidar_node=Node(
+        package='lidar',
+        executable='lidar_node',
+        name='delta2a_lidar',
+        output='screen',
+        parameters=[{
+            'port':     '/dev/ttyUSB1',
+            'baud':     230400,
+            'frame_id': 'lidar_link',
+            'topic':    'scan',
+        }],
+        )
+
     return  LaunchDescription([
         stm32_node,
+
         odometry_node,
         robot_localization_node,
-        launch_ros.actions.Node(
-            package='rviz2',
-            executable='rviz2',
-            name='rviz2',
-            arguments=['-d',rviz_config_path],
-            parameters=[{'use_sim_time':False}],
-            output='screen'
-        ),
+        rviz_node,
         launch.actions.IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 [nav2_param_path,'/launch','/bringup_launch.py']
