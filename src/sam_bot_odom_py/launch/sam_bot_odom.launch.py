@@ -10,7 +10,7 @@ def generate_launch_description():
     ekf_config_path = os.path.join(sam_bot_odom_py_path, 'config', 'ekf.yaml')
     urdf_path=os.path.join(sam_bot_odom_py_path,'urdf','sam_bot.urdf')
     rviz_config_path=os.path.join(sam_bot_odom_py_path,'config','rviz.rviz')
-    filter_path=os.path.join(sam_bot_odom_py_path,'config','laser_filter_chain.yaml')
+    
 
     with open(urdf_path, 'r') as f:
         robot_description = f.read()
@@ -72,20 +72,10 @@ def generate_launch_description():
             'topic':    'scan',
         }],
         )
-    laser_filters_node=Node(
-            package='laser_filters',
-            executable='scan_to_scan_filter_chain',
-            name='laser_filter_chain',
-            parameters=[filter_path],
-            remappings=[
-                ('scan', '/scan'),       # 输入原始雷达
-                ('scan_filtered', '/scan_filtered')    # 输出过滤后数据
-            ]
-        )
+    
     return  LaunchDescription([
         stm32_node,
         lidar_node,
-        # laser_filters_node,
         odometry_node,
         # robot_localization_node,
         robot_state_publisher_node,
