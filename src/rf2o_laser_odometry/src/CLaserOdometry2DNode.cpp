@@ -27,9 +27,9 @@ CLaserOdometry2DNode::CLaserOdometry2DNode(): Node("CLaserOdometry2DNode")
   //----------------
   this->declare_parameter<std::string>("laser_scan_topic", "/scan");
   this->get_parameter("laser_scan_topic", laser_scan_topic);
-  this->declare_parameter<std::string>("odom_topic", "/odom_rf2o");
+  this->declare_parameter<std::string>("odom_topic", "/laser_odom");
   this->get_parameter("odom_topic", odom_topic);
-  this->declare_parameter<std::string>("base_frame_id", "base_link");
+  this->declare_parameter<std::string>("base_frame_id", "base_footprint");
   this->get_parameter("base_frame_id", base_frame_id);
   this->declare_parameter<std::string>("odom_frame_id", "odom");
   this->get_parameter("odom_frame_id", odom_frame_id);
