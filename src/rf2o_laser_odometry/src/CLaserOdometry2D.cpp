@@ -65,7 +65,7 @@ void CLaserOdometry2D::init(const sensor_msgs::msg::LaserScan& scan,
                             const geometry_msgs::msg::Pose& initial_robot_pose)
 {
   // Obtain laser parametes
-  RCLCPP_INFO(get_logger(), "Got first Laser Scan .... Configuring node");
+  // RCLCPP_INFO(get_logger(), "Got first Laser Scan .... Configuring node");
   width = scan.ranges.size();         // Num of samples (size) of the scan laser
   cols = width;						            // Max resolution. Should be similar to the width parameter
   fovh = std::abs(scan.angle_max - scan.angle_min);  // Horizontal Laser's FOV
@@ -273,8 +273,8 @@ bool CLaserOdometry2D::odometryCalculation(const sensor_msgs::msg::LaserScan& sc
 
   // Get computation time 
   auto m_runtime = get_clock()->now() - start;
-  RCLCPP_INFO(get_logger(), "execution time (ms): %f",
-                m_runtime.seconds()*double(1000));
+  // RCLCPP_INFO(get_logger(), "execution time (ms): %f",
+  //               m_runtime.seconds()*double(1000));
 
   // Update poses with the new odom
   PoseUpdate();
@@ -837,11 +837,11 @@ bool CLaserOdometry2D::filterLevelSolution()
   //		Calculate Eigenvalues and Eigenvectors
   //----------------------------------------------------------
   Eigen::SelfAdjointEigenSolver<Eigen::MatrixXf> eigensolver(cov_odo);
-  if (eigensolver.info() != Eigen::Success)
-  {
-    RCLCPP_WARN(get_logger(), "WARNING: Eigensolver couldn't find a solution. Pose is not updated");
-    return false;
-  }
+  // if (eigensolver.info() != Eigen::Success)
+  // {
+  //   // RCLCPP_WARN(get_logger(), "WARNING: Eigensolver couldn't find a solution. Pose is not updated");
+  //   // return false;
+  // }
 
   //First, we have to describe both the new linear and angular speeds in the "eigenvector" basis
   //-------------------------------------------------------------------------------------------------
