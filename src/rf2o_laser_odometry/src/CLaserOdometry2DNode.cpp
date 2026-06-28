@@ -229,7 +229,7 @@ void CLaserOdometry2DNode::publish()
   // 2. publish over tf? (one one node should publish this transform!)
   if (publish_tf)
   {
-    RCLCPP_DEBUG(get_logger(), "Publishing TF: [base_link] to [odom]");
+    // RCLCPP_DEBUG( get_logger(), "Publishing TF: [base_link] to [odom]");
     geometry_msgs::msg::TransformStamped odom_trans;
     odom_trans.header.stamp = rf2o_ref.last_odom_time;    // the time of the last scan used!
     odom_trans.header.frame_id = odom_frame_id;
