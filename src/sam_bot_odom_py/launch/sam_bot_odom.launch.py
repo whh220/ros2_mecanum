@@ -37,7 +37,7 @@ def generate_launch_description():
         name='rviz2',
         arguments=['-d',rviz_config_path]
     )
-    odometry_node = Node(
+    wheel_odom = Node(
         package= 'sam_bot_odom_py',
         executable='OdometryNode',
         name='odometry_node',
@@ -72,12 +72,27 @@ def generate_launch_description():
             'topic':    'scan',
         }],
         )
+    laser_odom=Node(
+        package='rf2o_laser_odometry',
+        executable='rf2o_laser_odometry_node',
+        name='rf2o_laser_odometry',
+        output='screen',
+        parameters=[{
+            'laser_scan_topic' : '/scan',
+            'odom_topic' : '/laser_odom',
+            'publish_tf' : True,
+            'base_frame_id' : 'base_footprint',
+            'odom_frame_id' : 'odom',
+            'init_pose_from_topic' : '',
+            'freq' : 20.0}],
+        ),
     
     return  LaunchDescription([
         stm32_node,
         lidar_node,
-        odometry_node,
-        # robot_localization_node,
+        wheel_odom,
+        laser_odom,
+        robot_localization_node,
         robot_state_publisher_node,
         joint_state_publisher_node,
         rviz_node

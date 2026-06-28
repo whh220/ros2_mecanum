@@ -6,7 +6,7 @@ ekf_filter_node:
     publish_tf: true
     map_frame: map
     odom_frame: odom
-    base_link_frame: base_link
+    base_link_frame: base_footprint
     world_frame: odom
     
     # 输入1：下位机轮速里程计（从 /get_vel 积分得到）
