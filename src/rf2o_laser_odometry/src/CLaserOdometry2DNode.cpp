@@ -243,7 +243,7 @@ void CLaserOdometry2DNode::publish()
   }
 }
 
-} /* namespace rf2o */
+ /* namespace rf2o */
 
 
 //-----------------------------------------------------------------------------------
