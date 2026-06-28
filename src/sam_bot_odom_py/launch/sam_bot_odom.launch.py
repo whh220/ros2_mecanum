@@ -85,7 +85,7 @@ def generate_launch_description():
             'odom_frame_id' : 'odom',
             'init_pose_from_topic' : '',
             'freq' : 20.0}],
-        ),
+        )
     
     return  LaunchDescription([
         stm32_node,
