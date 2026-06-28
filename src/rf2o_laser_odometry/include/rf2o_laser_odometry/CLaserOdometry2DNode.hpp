@@ -46,4 +46,4 @@ public:
   void LaserCallBack(const sensor_msgs::msg::LaserScan::SharedPtr new_scan);
   void initPoseCallBack(const nav_msgs::msg::Odometry::SharedPtr new_initPose);
 };
-
+}
