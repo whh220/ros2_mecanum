@@ -150,7 +150,13 @@ void CLaserOdometry2D::init(const sensor_msgs::msg::LaserScan& scan,
   null    = Eigen::MatrixXi::Constant(1, cols, 0);
   cov_odo = IncrementCov::Zero();
 
-  fps = 1.f;		//In Hz
+  float scan_time = scan.scan_time;  // 从消息中读取
+    if (scan_time > 0.0f) {
+        fps = 1.0f / scan_time;
+    } else {
+        fps = 8.0f;  // 默认值，防止除以零
+        RCLCPP_WARN(get_logger(), "Invalid scan_time, using default fps=20");
+    }
   num_valid_range = 0;
 
   //Compute gaussian mask
