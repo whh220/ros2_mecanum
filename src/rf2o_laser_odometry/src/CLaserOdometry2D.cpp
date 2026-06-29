@@ -86,7 +86,7 @@ void CLaserOdometry2D::init(const sensor_msgs::msg::LaserScan& scan,
 
   // Get the initial laser pose assuming laser is fixed with respect the base_link
   laser_pose_    = robot_initial_pose * laser_pose_on_robot_;
-  laser_oldpose_ = laser_oldpose_;
+  laser_oldpose_ = laser_pose_;
 
 
   // Init rf2o module (internal)
@@ -1006,6 +1006,7 @@ void CLaserOdometry2D::PoseUpdate()
   double time_inc_sec = (current_scan_time - last_odom_time).seconds();
   last_odom_time = current_scan_time;
   lin_speed = acu_trans(0,2) / time_inc_sec;
+  lin_speed_y = acu_trans(1,2) / time_inc_sec;
   //double lin_speed = sqrt( mrpt::math::square(robot_oldpose.x()-robot_pose.x()) + mrpt::math::square(robot_oldpose.y()-robot_pose.y()) )/time_inc_sec;
 
   double ang_inc = rf2o::getYaw(robot_pose_.rotation()) -

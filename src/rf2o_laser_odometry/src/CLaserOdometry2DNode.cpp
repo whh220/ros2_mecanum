@@ -63,10 +63,10 @@ CLaserOdometry2DNode::CLaserOdometry2DNode(): Node("CLaserOdometry2DNode")
     initial_robot_pose.pose.pose.position.x = 0;
     initial_robot_pose.pose.pose.position.y = 0;
     initial_robot_pose.pose.pose.position.z = 0;
-    initial_robot_pose.pose.pose.orientation.w = 0;
-    initial_robot_pose.pose.pose.orientation.x = 0;
-    initial_robot_pose.pose.pose.orientation.y = 0;
-    initial_robot_pose.pose.pose.orientation.z = 0;
+    initial_robot_pose.pose.pose.orientation.w = 1.0;
+    initial_robot_pose.pose.pose.orientation.x = 0.0;
+    initial_robot_pose.pose.pose.orientation.y = 0.0;
+    initial_robot_pose.pose.pose.orientation.z = 0.0;
   }
 
   // Init variables
@@ -220,9 +220,19 @@ void CLaserOdometry2DNode::publish()
   odom.pose.pose.orientation = quaternion;
   //set the velocity
   odom.child_frame_id = base_frame_id;
-  odom.twist.twist.linear.x = rf2o_ref.lin_speed;    //linear speed
-  odom.twist.twist.linear.y = 0.0;
-  odom.twist.twist.angular.z = rf2o_ref.ang_speed;   //angular speed
+  odom.twist.twist.linear.x = rf2o_ref.lin_speed;     //linear speed x
+  odom.twist.twist.linear.y = rf2o_ref.lin_speed_y;   //linear speed y (mecanum/holonomic)
+  odom.twist.twist.angular.z = rf2o_ref.ang_speed;    //angular speed
+
+  // Publish covariance (from the RF2O internal estimation)
+  const IncrementCov& cov = rf2o_ref.getIncrementCovariance();
+  for (int i = 0; i < 3; i++)
+    for (int j = 0; j < 3; j++)
+    {
+      odom.pose.covariance[i*6 + j] = cov(i, j);
+      odom.twist.covariance[i*6 + j] = cov(i, j);
+    }
+
   //publish the message
   odom_pub->publish(odom);
 

@@ -22,7 +22,7 @@ public:
 
   // Params & vars
   CLaserOdometry2D    rf2o_ref;
-  bool                publish_tf, new_scan_available;
+  bool                publish_tf, new_scan_available = false;
   double              freq;
   std::string         laser_scan_topic;
   std::string         odom_topic;
