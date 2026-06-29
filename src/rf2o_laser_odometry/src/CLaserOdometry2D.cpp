@@ -857,8 +857,12 @@ bool CLaserOdometry2D::filterLevelSolution()
 
   kai_b = Bii.colPivHouseholderQr().solve(kai_loc_level_);
 
-  assert((kai_loc_level_).isApprox(Bii*kai_b, 1e-5) && "Ax=b has no solution." && __LINE__);
-
+  if (!(kai_loc_level_).isApprox(Bii*kai_b, 1e-5)) {
+        // 解不存在，说明输入数据不足以估计运动
+        // 可能是静止或退化场景
+        RCLCPP_WARN(get_logger(), "No solution exists (possibly stationary or degenerate), skipping update");
+        return false;  // 不更新，但不崩溃
+    }
   //Second, we have to describe both the old linear and angular speeds in the "eigenvector" basis too
   //-------------------------------------------------------------------------------------------------
   MatrixS31 kai_loc_sub;
@@ -882,7 +886,12 @@ bool CLaserOdometry2D::filterLevelSolution()
   Eigen::Matrix<float,3,1> kai_b_old;
   kai_b_old = Bii.colPivHouseholderQr().solve(kai_loc_sub);
 
-  assert((kai_loc_sub).isApprox(Bii*kai_b_old, 1e-5) && "Ax=b has no solution." && __LINE__);
+  if (!(kai_loc_level_).isApprox(Bii*kai_b, 1e-5)) {
+        // 解不存在，说明输入数据不足以估计运动
+        // 可能是静止或退化场景
+        RCLCPP_WARN(get_logger(), "No solution exists (possibly stationary or degenerate), skipping update");
+        return false;  // 不更新，但不崩溃
+    }
 
   //Filter speed
   const float cf = 15e3f*std::exp(-float(int(level))),
@@ -898,7 +907,12 @@ bool CLaserOdometry2D::filterLevelSolution()
   //Transform filtered speed to local reference frame and compute transformation
   Eigen::Matrix<float, 3, 1> kai_loc_fil = Bii.inverse().colPivHouseholderQr().solve(kai_b_fil);
 
-  assert((kai_b_fil).isApprox(Bii.inverse()*kai_loc_fil, 1e-5) && "Ax=b has no solution." && __LINE__);
+  if (!(kai_loc_level_).isApprox(Bii*kai_b, 1e-5)) {
+        // 解不存在，说明输入数据不足以估计运动
+        // 可能是静止或退化场景
+        RCLCPP_WARN(get_logger(), "No solution exists (possibly stationary or degenerate), skipping update");
+        return false;  // 不更新，但不崩溃
+    }
 
   //transformation
   const float incrx = kai_loc_fil(0)/fps;

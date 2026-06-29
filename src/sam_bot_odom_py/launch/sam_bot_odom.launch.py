@@ -91,8 +91,8 @@ def generate_launch_description():
         stm32_node,
         lidar_node,
         wheel_odom,
-        laser_odom,
-        robot_localization_node,
+        # laser_odom,
+        # robot_localization_node,
         robot_state_publisher_node,
         joint_state_publisher_node,
         rviz_node
