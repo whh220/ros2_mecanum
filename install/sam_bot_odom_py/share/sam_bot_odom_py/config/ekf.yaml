@@ -1,7 +1,7 @@
 ekf_filter_node:
   ros__parameters:
     frequency: 50.0
-    sensor_timeout: 0.1
+    sensor_timeout: 0.2
     two_d_mode: true
     publish_tf: true
     map_frame: map
@@ -10,16 +10,16 @@ ekf_filter_node:
     world_frame: odom
     
     # 输入1：下位机轮速里程计（从 /get_vel 积分得到）
-    odometry0: /wheel_odom
-    odometry0_config: [true, true, false,
+    odom0: /wheel_odom
+    odom0_config: [true, true, false,
                        false, false, true,
                        false, false, false,
                        false, false, false,
                        false, false, false]
     
     # 输入2：雷达里程计
-    odometry1: /laser_odom
-    odometry1_config: [true, true, false,
+    odom1: /laser_odom
+    odom1_config: [true, true, false,
                        false, false, true,
                        false, false, false,
                        false, false, false,
@@ -27,17 +27,17 @@ ekf_filter_node:
 
 
     # 轮式里程计的协方差（角度漂移较大）
-    odometry0_pose_covariance: [0.01, 0.0, 0.0,
+    odom0_pose_covariance: [0.01, 0.0, 0.0,
                                 0.0, 0.01, 0.0,
                                 0.0, 0.0, 0.01]
-    odometry0_twist_covariance: [0.001, 0.0, 0.0,
+    odom0_twist_covariance: [0.001, 0.0, 0.0,
                                   0.0, 0.001, 0.0,
                                   0.0, 0.0, 0.05]  # 角度漂移大
 
     # 激光里程计的协方差（更准确）
-    odometry1_pose_covariance: [0.001, 0.0, 0.0,
-                                0.0, 0.001, 0.0,
-                                0.0, 0.0, 0.001]
-    odometry1_twist_covariance: [0.001, 0.0, 0.0,
-                                  0.0, 0.001, 0.0,
-                                  0.0, 0.0, 0.001]
+    odom1_pose_covariance: [0.05, 0.0, 0.0,
+                                0.0, 0.05, 0.0,
+                                0.0, 0.0, 0.05]
+    odom1_twist_covariance: [0.01, 0.0, 0.0,
+                                  0.0, 0.01, 0.0,
+                                  0.0, 0.0, 0.01]

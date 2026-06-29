@@ -87,9 +87,8 @@ def generate_launch_description():
         parameters=[{
             'odom_frame': 'odom',
             'base_frame': 'base_footprint',
-            'publish_tf': True,        # 纯轮式：自己发 TF
-        }],
-        condition=UnlessCondition(fusion_mode),
+            'publish_tf': False,        # 纯轮式：自己发 TF
+        }]
     )
 
     # ── 激光里程计 ──
@@ -106,8 +105,7 @@ def generate_launch_description():
             'odom_frame_id': 'odom',
             'init_pose_from_topic': '',
             'freq': 20.0,
-        }],
-        condition=IfCondition(fusion_mode),
+        }]
     )
 
     # ── EKF 融合 ──
@@ -121,10 +119,6 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        DeclareLaunchArgument(
-            'fusion_mode',
-            default_value='false',
-            description='Enable laser+wheel odometry EKF fusion'),
         stm32_node,
         lidar_node,
         wheel_odom,

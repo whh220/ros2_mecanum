@@ -13,10 +13,12 @@ class OdometryNode(Node):
         # 声明参数
         self.declare_parameter('odom_frame', 'odom')
         self.declare_parameter('base_frame', 'base_footprint')
-        
+        self.declare_parameter('publish_tf', False)
+
         # 读取参数
         self.odom_frame = self.get_parameter('odom_frame').get_parameter_value().string_value
         self.base_frame = self.get_parameter('base_frame').get_parameter_value().string_value
+        self.publish_tf = self.get_parameter('publish_tf').get_parameter_value().bool_value
         # 发布者
         self.odom_pub = self.create_publisher(Odometry, '/wheel_odom', 10)
          # TF 广播器
@@ -88,24 +90,25 @@ class OdometryNode(Node):
         
         self.odom_pub.publish(odom_msg)
         
-        # 2. 直接发布 TF 变换（odom -> base_footprint）
-        # tf_msg = TransformStamped()
-        # tf_msg.header.stamp = current_time.to_msg()
-        # tf_msg.header.frame_id = self.odom_frame
-        # tf_msg.child_frame_id = self.base_frame
-        
-        # # 使用相同的位姿数据
-        # tf_msg.transform.translation.x = self.x
-        # tf_msg.transform.translation.y = self.y
-        # tf_msg.transform.translation.z = 0.0
-        
-        # tf_msg.transform.rotation.x = 0.0
-        # tf_msg.transform.rotation.y = 0.0
-        # tf_msg.transform.rotation.z = math.sin(self.th / 2.0)
-        # tf_msg.transform.rotation.w = math.cos(self.th / 2.0)
-        
-        # # 广播 TF
-        # self.tf_broadcaster.sendTransform(tf_msg)
+        # 2. 发布 TF 变换（odom -> base_footprint），仅在纯轮式里程计模式下发布
+        if self.publish_tf:
+            tf_msg = TransformStamped()
+            tf_msg.header.stamp = current_time.to_msg()
+            tf_msg.header.frame_id = self.odom_frame
+            tf_msg.child_frame_id = self.base_frame
+
+            # 使用相同的位姿数据
+            tf_msg.transform.translation.x = self.x
+            tf_msg.transform.translation.y = self.y
+            tf_msg.transform.translation.z = 0.0
+
+            tf_msg.transform.rotation.x = 0.0
+            tf_msg.transform.rotation.y = 0.0
+            tf_msg.transform.rotation.z = math.sin(self.th / 2.0)
+            tf_msg.transform.rotation.w = math.cos(self.th / 2.0)
+
+            # 广播 TF
+            self.tf_broadcaster.sendTransform(tf_msg)
         
         self.last_time = current_time
 
