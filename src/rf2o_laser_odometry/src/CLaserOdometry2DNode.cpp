@@ -44,7 +44,8 @@ CLaserOdometry2DNode::CLaserOdometry2DNode(): Node("CLaserOdometry2DNode")
   //---------------------------------
   buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
   tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*buffer_);
-  odom_broadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(this);
+  if (publish_tf)
+    odom_broadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(this);
   odom_pub  = this->create_publisher<nav_msgs::msg::Odometry>(odom_topic, 5);
   laser_sub = this->create_subscription<sensor_msgs::msg::LaserScan>(laser_scan_topic,rclcpp::QoS(rclcpp::KeepLast(1)).best_effort().durability_volatile(),
       std::bind(&CLaserOdometry2DNode::LaserCallBack, this, std::placeholders::_1));
@@ -70,6 +71,7 @@ CLaserOdometry2DNode::CLaserOdometry2DNode(): Node("CLaserOdometry2DNode")
   }
 
   // Init variables
+  rf2o_ref.setNode(this);
   rf2o_ref.module_initialized = false;
   rf2o_ref.first_laser_scan   = true;
 }
@@ -224,14 +226,8 @@ void CLaserOdometry2DNode::publish()
   odom.twist.twist.linear.y = rf2o_ref.lin_speed_y;   //linear speed y (mecanum/holonomic)
   odom.twist.twist.angular.z = rf2o_ref.ang_speed;    //angular speed
 
-  // Publish covariance (from the RF2O internal estimation)
-  const IncrementCov& cov = rf2o_ref.getIncrementCovariance();
-  for (int i = 0; i < 3; i++)
-    for (int j = 0; j < 3; j++)
-    {
-      odom.pose.covariance[i*6 + j] = cov(i, j);
-      odom.twist.covariance[i*6 + j] = cov(i, j);
-    }
+  // Covariance is left zero so EKF uses its yaml-configured static values,
+  // rather than RF2O's overly-optimistic internal covariance estimate.
 
   //publish the message
   odom_pub->publish(odom);

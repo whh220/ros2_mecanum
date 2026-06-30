@@ -8,36 +8,38 @@ ekf_filter_node:
     odom_frame: odom
     base_link_frame: base_footprint
     world_frame: odom
-    
-    # 输入1：下位机轮速里程计（从 /get_vel 积分得到）
+
+    # 输入0：轮式里程计（短期精准，震动不受影响）
     odom0: /wheel_odom
     odom0_config: [true, true, false,
                        false, false, true,
                        false, false, false,
                        false, false, false,
                        false, false, false]
-    
-    # 输入2：雷达里程计
+    odom0_differential: false
+
+    # 输入1：激光里程计（增量模式：只用帧间位移，不用绝对位姿）
     odom1: /laser_odom
     odom1_config: [true, true, false,
                        false, false, true,
                        false, false, false,
                        false, false, false,
                        false, false, false]
+    odom1_differential: true
 
-
-    # 轮式里程计的协方差（角度漂移较大）
-    odom0_pose_covariance: [0.01, 0.0, 0.0,
-                                0.0, 0.01, 0.0,
-                                0.0, 0.0, 0.01]
+    # 轮式里程计 — 高度信任
+    odom0_pose_covariance: [0.001, 0.0, 0.0,
+                                 0.0, 0.001, 0.0,
+                                 0.0, 0.0, 0.001]
     odom0_twist_covariance: [0.001, 0.0, 0.0,
                                   0.0, 0.001, 0.0,
-                                  0.0, 0.0, 0.05]  # 角度漂移大
-
-    # 激光里程计的协方差（更准确）
-    odom1_pose_covariance: [0.05, 0.0, 0.0,
-                                0.0, 0.05, 0.0,
-                                0.0, 0.0, 0.05]
-    odom1_twist_covariance: [0.01, 0.0, 0.0,
-                                  0.0, 0.01, 0.0,
                                   0.0, 0.0, 0.01]
+
+    # 激光里程计 — 极低信任（仅用于缓慢修正累积漂移）
+    # 协方差设大 100 倍，震动时激光跳变基本被 EKF 忽略
+    odom1_pose_covariance: [1.0, 0.0, 0.0,
+                                 0.0, 1.0, 0.0,
+                                 0.0, 0.0, 1.0]
+    odom1_twist_covariance: [0.5, 0.0, 0.0,
+                                  0.0, 0.5, 0.0,
+                                  0.0, 0.0, 0.5]

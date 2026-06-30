@@ -70,11 +70,16 @@ using MatrixS31 = Eigen::Matrix<Scalar, 3, 1>;
 using IncrementCov = Eigen::Matrix<Scalar, 3, 3>;
 
 
-class CLaserOdometry2D: public rclcpp::Node
+class CLaserOdometry2D
 {
 public:
 
   CLaserOdometry2D();
+
+  void setNode(rclcpp::Node* node) { node_ = node; }
+
+  rclcpp::Logger get_logger() const { return node_->get_logger(); }
+  rclcpp::Clock::SharedPtr get_clock() const { return node_->get_clock(); }
 
   void init(const sensor_msgs::msg::LaserScan& scan,
             const geometry_msgs::msg::Pose& initial_robot_pose);
@@ -155,6 +160,9 @@ public:
   bool test;
   std::vector<double> last_m_lin_speeds;
   std::vector<double> last_m_ang_speeds;
+
+private:
+  rclcpp::Node* node_ = nullptr;
 
   // Methods
   void createImagePyramid();
