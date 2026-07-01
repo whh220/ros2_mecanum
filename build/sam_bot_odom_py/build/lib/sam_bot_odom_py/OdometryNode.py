@@ -21,8 +21,11 @@ class OdometryNode(Node):
         self.publish_tf = self.get_parameter('publish_tf').get_parameter_value().bool_value
         # 发布者
         self.odom_pub = self.create_publisher(Odometry, '/wheel_odom', 10)
-         # TF 广播器
-        self.tf_broadcaster = TransformBroadcaster(self)
+
+        # TF 广播器（仅 publish_tf 时创建，避免 rqt 上显示多余的 /tf 连接）
+        self.tf_broadcaster = None
+        if self.publish_tf:
+            self.tf_broadcaster = TransformBroadcaster(self)
         
         # 订阅速度反馈（你的通信节点发布的 /get_vel）
         self.vel_sub = self.create_subscription(

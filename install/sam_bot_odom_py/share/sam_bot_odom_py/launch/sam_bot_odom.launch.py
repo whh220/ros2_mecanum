@@ -1,7 +1,4 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration
-from launch.conditions import IfCondition, UnlessCondition
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 import os
@@ -13,9 +10,6 @@ def generate_launch_description():
     ekf_config_path = os.path.join(sam_bot_odom_py_path, 'config', 'ekf.yaml')
     urdf_path = os.path.join(sam_bot_odom_py_path, 'urdf', 'sam_bot.urdf')
     rviz_config_path = os.path.join(sam_bot_odom_py_path, 'config', 'rviz.rviz')
-
-    # ── 融合模式开关 ──
-    fusion_mode = LaunchConfiguration('fusion_mode', default='false')
 
     with open(urdf_path, 'r') as f:
         robot_description = f.read()
@@ -64,9 +58,6 @@ def generate_launch_description():
         }],
     )
 
-    # ── 轮式里程计 ──
-    # 纯轮式模式：自己发 TF + /odom
-    # 融合模式：只发 /wheel_odom，TF 和 /odom 交给 EKF
     wheel_odom = Node(
         package='sam_bot_odom_py',
         executable='OdometryNode',
@@ -75,23 +66,10 @@ def generate_launch_description():
         parameters=[{
             'odom_frame': 'odom',
             'base_frame': 'base_footprint',
-            'publish_tf': False,       # 融合模式下不发 TF
+            'publish_tf': False,
         }],
-        condition=IfCondition(fusion_mode),
-    )
-    wheel_odom_standalone = Node(
-        package='sam_bot_odom_py',
-        executable='OdometryNode',
-        name='odometry_node',
-        output='screen',
-        parameters=[{
-            'odom_frame': 'odom',
-            'base_frame': 'base_footprint',
-            'publish_tf': False,        # 纯轮式：自己发 TF
-        }]
     )
 
-    # ── 激光里程计 ──
     laser_odom = Node(
         package='rf2o_laser_odometry',
         executable='rf2o_laser_odometry_node',
@@ -100,30 +78,30 @@ def generate_launch_description():
         parameters=[{
             'laser_scan_topic': '/scan',
             'odom_topic': '/laser_odom',
-            'publish_tf': False,       # EKF 统一发 TF
+            'publish_tf': False,
             'base_frame_id': 'base_footprint',
             'odom_frame_id': 'odom',
             'init_pose_from_topic': '',
             'freq': 20.0,
-        }]
+        }],
     )
 
-    # ── EKF 融合 ──
     robot_localization_node = Node(
         package='robot_localization',
         executable='ekf_node',
         name='ekf_filter_node',
         output='screen',
         parameters=[ekf_config_path],
-        condition=IfCondition(fusion_mode),
+        remappings=[
+            ('/odometry/filtered', '/odom'),
+        ],
     )
 
     return LaunchDescription([
         stm32_node,
         lidar_node,
         wheel_odom,
-        wheel_odom_standalone,
-        laser_odom,
+        # laser_odom,
         robot_localization_node,
         robot_state_publisher_node,
         joint_state_publisher_node,
