@@ -12,6 +12,8 @@ config/nav2_params.yaml
 launch/sam_bot_nav2.launch.py
 map/room.pgm
 map/room.yaml
+map/room2.pgm
+map/room2.yaml
 resource/sam_bot_nav
 sam_bot_nav/__init__.py
 sam_bot_nav/nav_node.py

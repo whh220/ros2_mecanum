@@ -17,7 +17,7 @@ def generate_launch_description():
         'params_file',default=os.path.join(sam_bot_nav2_path,'config','nav2_params.yaml')
     )
     map_yaml_path=launch.substitutions.LaunchConfiguration(
-        'map',default=os.path.join(sam_bot_nav2_path,'map','room.yaml')
+        'map',default=os.path.join(sam_bot_nav2_path,'map','room2.yaml')
     )
 
     rviz_node=Node(
