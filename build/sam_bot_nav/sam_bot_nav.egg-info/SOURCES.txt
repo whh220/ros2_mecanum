@@ -9,6 +9,7 @@ setup.py
 ../../build/sam_bot_nav/sam_bot_nav.egg-info/top_level.txt
 ../../build/sam_bot_nav/sam_bot_nav.egg-info/zip-safe
 config/nav2_params.yaml
+config/nav2_params1.yaml
 launch/sam_bot_nav2.launch.py
 map/room.pgm
 map/room.yaml
