@@ -91,18 +91,18 @@ controller_server:
       rotate_to_heading_angular_vel: 0.5
       max_angular_accel: 1.0
       simulate_ahead_time: 1.0
-      rotate_to_goal_heading: true
+      
 
-      debug_trajectory_details: false
+      debug_trajectory_details: True
 
-      min_vel_x: 0.0
+      min_vel_x: -0.35
       max_vel_x: 0.35
-      min_vel_y: 0.0
+      min_vel_y: -0.35
       max_vel_y: 0.35
       max_vel_theta: 0.8
 
       min_speed_xy: 0.0
-      max_speed_xy: 0.45
+      max_speed_xy: 0.5
       min_speed_theta: 0.0
 
       acc_lim_x: 0.8
@@ -114,7 +114,7 @@ controller_server:
       decel_lim_theta: -1.2
 
       vx_samples: 20
-      vy_samples: 20
+      vy_samples: 1
       vtheta_samples: 24
 
       sim_time: 1.5
@@ -126,16 +126,7 @@ controller_server:
       short_circuit_trajectory_evaluation: true
       stateful: true
 
-      critics:
-        [
-          "RotateToGoal",
-          "Oscillation",
-          "BaseObstacle",
-          "GoalAlign",
-          "PathAlign",
-          "PathDist",
-          "GoalDist"
-        ]
+      critics: ["Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist", "RotateToGoal"]
 
       BaseObstacle.scale: 0.08
 

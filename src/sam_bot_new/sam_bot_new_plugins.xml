@@ -1,0 +1,11 @@
+<library path="sam_bot_new">
+  <class name="FuzzyDWACritic"
+         type="sam_bot_new::FuzzyDWACritic"
+         base_class_type="dwb_core::TrajectoryCritic">
+    <description>
+      Fuzzy DWA critic: runtime fuzzy inference blends heading, obstacle, and velocity
+      scores with dynamic weights from environment perception.
+      模糊DWA critic：环境感知 + 运行时模糊推理 + 三项评分动态加权融合。
+    </description>
+  </class>
+</library>

@@ -13,8 +13,12 @@ def generate_launch_description():
     nav2_bringup_path=get_package_share_directory('nav2_bringup')
     rviz_config_path=os.path.join(nav2_bringup_path,'rviz','nav2_default_view.rviz')
     sam_bot_nav2_path=get_package_share_directory('sam_bot_nav')
+    sam_bot_new_path=get_package_share_directory('sam_bot_new')
+    # nav2_param_path=launch.substitutions.LaunchConfiguration(
+    #     'params_file',default=os.path.join(sam_bot_new_path,'config','nav2_params_dwa.yaml')
+    # )
     nav2_param_path=launch.substitutions.LaunchConfiguration(
-        'params_file',default=os.path.join(sam_bot_nav2_path,'config','nav2_params.yaml')
+        'params_file',default=os.path.join(sam_bot_nav2_path,'config','nav2_params1.yaml')
     )
     map_yaml_path=launch.substitutions.LaunchConfiguration(
         'map',default=os.path.join(sam_bot_nav2_path,'map','room2.yaml')

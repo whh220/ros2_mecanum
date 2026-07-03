@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>sam_bot_new</name>
+  <version>0.0.0</version>
+  <description>Single DWB critic plugin with runtime fuzzy inference for dynamic weight blending</description>
+  <maintainer email="wh@todo.todo">wh</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>dwb_core</depend>
+  <depend>dwb_msgs</depend>
+  <depend>nav2_costmap_2d</depend>
+  <depend>nav2_core</depend>
+  <depend>nav_2d_msgs</depend>
+  <depend>pluginlib</depend>
+  <depend>rclcpp</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <dwb_core plugin="${prefix}/sam_bot_new_plugins.xml"/>
+  </export>
+</package>
