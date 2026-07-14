@@ -11,10 +11,10 @@ ekf_filter_node:
 
     # 输入0：轮式里程计（短期精准，震动不受影响）
     odom0: /wheel_odom
-    odom0_config: [true, true, false,
+    odom0_config: [true, true, true,
+                       false, false, false,
+                       false, false, false,
                        false, false, true,
-                       false, false, false,
-                       false, false, false,
                        false, false, false]
     odom0_differential: false
 
@@ -27,6 +27,15 @@ ekf_filter_node:
                        false, false, false]
     odom1_differential: true
     odom1_queue_size: 3
+
+    imu0: /imu
+    imu0_config: [false, false, false,
+                        true, true, true,
+                        false, false, false,
+                        false, false, false,
+                        false, false, false]
+    imu0_differential: false
+    
     # 轮式里程计 — 高度信任
     process_noise_covariance: [0.1,   0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
                               0.0,    0.1,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,

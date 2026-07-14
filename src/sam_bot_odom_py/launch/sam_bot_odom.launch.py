@@ -97,13 +97,24 @@ def generate_launch_description():
         ],
     )
 
+    imu_node = Node(
+        package='wit_ros2_imu',
+        executable='wit_ros2_imu',
+        name='imu',
+        remappings=[('/wit/imu', '/imu')],
+        parameters=[{'port': '/dev/imu_usb'},
+                    {"baud": 9600}],
+        output="screen"
+
+    )
     return LaunchDescription([
         stm32_node,
         lidar_node,
         wheel_odom,
+        imu_node,
         laser_odom,
         robot_localization_node,
+        rviz_node,
         robot_state_publisher_node,
         joint_state_publisher_node,
-        rviz_node,
     ])
